@@ -1,17 +1,15 @@
-from pydantic import PostgresDsn, SecretStr
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Final as const
+
+from app.config.loader import settings
 
 
-class Settings(BaseSettings):
-    database_url: PostgresDsn
-    host: SecretStr
-    port: int
-    
-    model_config = SettingsConfigDict(
-        env_file='.env',
-        env_file_encoding='utf-8',
-        case_sensitive=False
-    )
+__all__ = (
+    'database_url',
+    'run_host',
+    'run_port',
+)
 
 
-settings = Settings() # type: ignore
+database_url: const = str(settings.database_url)
+run_host: const = settings.run_host.get_secret_value()
+run_port: const = settings.run_port
