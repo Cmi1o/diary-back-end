@@ -10,7 +10,7 @@ app = FastAPI()
 
 if __name__ == '__main__':
     uvicorn.run(
-        'main:app',
+        app='main:app',
         host=run_host,
         port=run_port,
         reload=True
