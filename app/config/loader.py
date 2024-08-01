@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     database_url: PostgresDsn
     run_host: SecretStr
     run_port: int
+    database_general_salt: SecretStr
     
     model_config = SettingsConfigDict(
         env_file='.env',
