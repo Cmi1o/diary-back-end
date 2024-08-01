@@ -1,5 +1,4 @@
-from .tasks import Task
-from .users import User
+from .schemas import User, Task
 from .core import Model
 
 
