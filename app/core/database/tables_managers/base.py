@@ -16,7 +16,7 @@ class ITableManager[_MT: Model](ABC):
         -------
         Table row data
         '''
-
+    
     @abstractmethod
     async def get_many_with(self, **filter_data) -> AsyncGenerator[_MT, None]:
         '''Asynchronous generator for getting rows from table with filter data
