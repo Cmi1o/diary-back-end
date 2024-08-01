@@ -5,64 +5,70 @@ from app.core.database.models import Model
 
 
 class ITableManager[_MT: Model](ABC):
-    def __init__(self, **__negative_settings__: Any) -> None: ...
+    @abstractmethod
+    def __init__(self, **negative_settings: Any) -> None: ...
     
     @abstractmethod
     async def get_all(self) -> AsyncGenerator[_MT, None]:
-        '''_summary_
+        '''Asynchronous generator for getting all rows from table
         
-        Returns
+        Yields
         -------
-        AsyncGenerator[Model, None]
-            _description_
+        Table row data
         '''
 
     @abstractmethod
     async def get_many_with(self, **filter_data) -> AsyncGenerator[_MT, None]:
-        '''_summary_
+        '''Asynchronous generator for getting rows from table with filter data
         
-        Returns
+        Parameters
+        ----------
+        filter_data : ...
+        
+        Yields
         -------
-        AsyncGenerator[_AT, None]
-            _description_
+        Table row data
         '''
     
     @abstractmethod
-    async def get_by(self, **filter_data) -> _MT:
-        '''_summary_
+    async def get_by(self, **filter_data) -> _MT | None:
+        '''Asynchronous method for getting row from table by `filter_data`
+        
+        Parameters
+        ----------
+        filter_data : ...
         
         Returns
         -------
-        _AT
-            _description_
+        table row | None
         '''
     
     @abstractmethod
     async def update_by(self, **filter_data) -> ...:
-        '''_summary_
+        '''...
+        
+        Parameters
+        ----------
+        filter_data : ...
         
         Returns
         -------
-        _AT
-            _description_
         '''
     
     @abstractmethod
     async def delete_by(self, **filter_data) -> None:
-        '''_summary_
+        '''Asynchronous method for deleting row from table by `filter_data`
         
-        Returns
-        -------
-        None
-            _description_
+        Parameters
+        ----------
+        filter_data : ...
         '''
     
     @abstractmethod
     async def create(self, **data) -> None:
-        '''_summary_
+        '''Asynchronous method for creating new row in table
         
-        Returns
-        -------
-        None
-            _description_
+        Parameters
+        ----------
+        data : ...
         '''
