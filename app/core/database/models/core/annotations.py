@@ -17,6 +17,6 @@ __all__ = (
 
 
 str50 = Annotated[str, mapped_column(String(50))]
-str255 = Annotated[str, mapped_column(String(255))] # string with a max length of 255
+str255 = Annotated[str, mapped_column(String(255))] # string with a max length
 integer = Annotated[int, mapped_column()]
 time = Annotated[datetime, mapped_column(DateTime())]
