@@ -9,7 +9,7 @@ class ITableManager[_MT: Model](ABC):
     def __init__(self, **negative_settings: Any) -> None: ...
     
     @abstractmethod
-    async def get_all(self) -> AsyncGenerator[_MT, None]:
+    def get_all(self) -> AsyncGenerator[_MT, None]:
         '''Asynchronous generator for getting all rows from table
         
         Yields
@@ -18,7 +18,7 @@ class ITableManager[_MT: Model](ABC):
         '''
     
     @abstractmethod
-    async def get_many_with(self, **filter_data) -> AsyncGenerator[_MT, None]:
+    def get_many_with(self, **filter_data) -> AsyncGenerator[_MT, None]:
         '''Asynchronous generator for getting rows from table with filter data
         
         Parameters
@@ -44,7 +44,7 @@ class ITableManager[_MT: Model](ABC):
         '''
     
     @abstractmethod
-    async def update_by(self, **filter_data) -> ...:
+    def update_by(self, **filter_data) -> ...:
         '''...
         
         Parameters
