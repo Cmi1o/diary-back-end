@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey, Enum
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column, relationship
 
+from app.core.database.types import Role
 from .core import Model
 from .core.annotations import *
 
