@@ -11,6 +11,7 @@ from .core.annotations import *
 
 class User(Model):
     name: Mapped[str50]
+    email: Mapped[str50]
     password: Mapped[integer]
     salt_hash: Mapped[integer]
     role: Mapped[Role] = mapped_column(Enum(Role))
