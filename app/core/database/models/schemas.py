@@ -1,6 +1,6 @@
 from typing import List
 
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, Enum
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column, relationship
 
@@ -12,6 +12,7 @@ class User(Model):
     name: Mapped[str50]
     password: Mapped[integer]
     salt_hash: Mapped[integer]
+    role: Mapped[Role] = mapped_column(Enum(Role))
     
     tasks: Mapped[List['Task']] = relationship(back_populates='user')
 
