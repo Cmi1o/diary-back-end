@@ -44,7 +44,7 @@ class ITableManager[_MT: Model](ABC):
         '''
     
     @abstractmethod
-    def update_by(self, **filter_data) -> ...:
+    def update_by(self, values, **filter_data) -> ...:
         '''...
         
         Parameters

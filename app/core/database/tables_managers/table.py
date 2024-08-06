@@ -1,13 +1,15 @@
+from typing import AsyncGenerator
 from sqlalchemy import sql
 
 from app.core.database.models import Model
 from app.core.database.models.core import session_factory
+from app.core.database.models.schemas import User
 
 from .base import ITableManager
 
 
 class Table[_MT: Model](ITableManager[_MT]):
-    def __init__(self, table, **negative_settings) -> None:
+    def __init__(self, table: _MT, **negative_settings) -> None:
         self.table = type(table)
     
     async def get_by(self, **filter_data):
@@ -17,3 +19,34 @@ class Table[_MT: Model](ITableManager[_MT]):
                     **filter_data
                 )
             )
+    
+    async def get_all(self) -> AsyncGenerator[_MT, None]:
+        async with session_factory() as session:
+            stmt = sql.select(self.table)
+            async for row in await session.stream(stmt):
+                yield row[0]
+    
+    async def get_many_with(self, **filter_data) -> AsyncGenerator[_MT, None]:
+        async with session_factory() as session:
+            stmt = sql.select(self.table).filter_by(**filter_data)
+            async for row in await session.stream(stmt):
+                yield row[0]
+    
+    async def create(self, **data):
+        async with session_factory() as session:
+            session.add(User(**data))
+            await session.commit()
+    
+    async def update_by(self, values, **filter_data):
+        async with session_factory() as session:
+            stmt = sql.update(self.table).filter_by(**filter_data)
+            
+            await session.execute(stmt.values(**values))
+            await session.commit()
+    
+    async def delete_by(self, **filter_data):
+        async with session_factory() as session:
+            stmt = sql.delete(self.table).filter_by(**filter_data)
+            
+            await session.execute(stmt)
+            await session.commit()
