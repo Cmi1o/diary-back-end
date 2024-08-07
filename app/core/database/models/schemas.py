@@ -16,7 +16,7 @@ class User(Model):
     salt: Mapped[str100]
     role: Mapped[Role] = mapped_column(Enum(Role))
     
-    tasks: Mapped[List['Task']] = relationship(back_populates='user')
+    tasks: Mapped[List['Task']] = relationship(back_populates='user', lazy='selectin')
 
 
 class Task(Model):
@@ -24,4 +24,4 @@ class Task(Model):
     description: Mapped[str255]
     
     user_id: Mapped[integer] = mapped_column(ForeignKey('users.id'))
-    user: Mapped['User'] = relationship(back_populates='tasks')
+    user: Mapped['User'] = relationship(back_populates='tasks', lazy='selectin')
