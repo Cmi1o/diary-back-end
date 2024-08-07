@@ -1,12 +1,12 @@
+from typing import AsyncGenerator
 from abc import ABC, abstractmethod
-from typing import Any, AsyncGenerator
 
 from app.core.database.models import Model
 
 
 class ITableManager[_MT: Model](ABC):
     @abstractmethod
-    def __init__(self, **negative_settings: Any) -> None: ...
+    def __init__(self) -> None: ...
     
     @abstractmethod
     def get_all(self) -> AsyncGenerator[_MT, None]:

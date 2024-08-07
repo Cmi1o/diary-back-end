@@ -9,7 +9,7 @@ from .base import ITableManager
 
 
 class Table[_MT: Model](ITableManager[_MT]):
-    def __init__(self, table: _MT, **negative_settings) -> None:
+    def __init__(self, table: _MT) -> None:
         self.table = type(table)
     
     async def get_by(self, **filter_data):
