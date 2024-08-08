@@ -12,8 +12,10 @@ from .core.annotations import *
 class User(Model):
     name: Mapped[str50]
     email: Mapped[str50]
-    password_and_salt_hash: Mapped[str100]
     salt: Mapped[str100]
+    # will use SHA256 hash
+    # password_and_salt_hash = SHA256(password + salt)
+    password_and_salt_hash: Mapped[str100]
     role: Mapped[Role] = mapped_column(Enum(Role))
     
     tasks: Mapped[List['Task']] = relationship(back_populates='user', lazy='selectin')
