@@ -12,7 +12,7 @@ from .core.annotations import *
 class User(Model):
     name: Mapped[str50]
     email: Mapped[str50]
-    password_and_salt_hash: Mapped[str100]
+    password_hash: Mapped[str100]
     salt: Mapped[str100]
     role: Mapped[Role] = mapped_column(Enum(Role))
     
