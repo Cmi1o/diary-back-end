@@ -1,6 +1,6 @@
 from typing import Final as const
 
-from app.config.loader import settings
+from app.core.config.loader import settings
 
 
 __all__ = (

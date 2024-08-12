@@ -2,7 +2,7 @@ import uvicorn
 
 from fastapi import FastAPI
 
-from app.config import run_host, run_port
+from app.core.config import run_host, run_port
 
 
 app = FastAPI()
