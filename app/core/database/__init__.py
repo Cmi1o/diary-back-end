@@ -1,1 +1,1 @@
-from .controllers.main import main_controller as controller
+from .controllers.general import main_controller as controller
