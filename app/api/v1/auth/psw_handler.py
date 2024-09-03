@@ -11,7 +11,6 @@ def hash(message: str) -> str:
 
 # saves psw and salt to db
 async def update_psw(user_name: str, new_psw: str) -> None:
-    # fetch user by name
     user = await controller.users.get_by(name=user_name) 
     if not user:
         raise ValueError(f'User {user_name} not found')

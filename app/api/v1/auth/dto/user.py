@@ -10,7 +10,7 @@ class AuthUserDTO(BaseModel):
     @field_validator('login')
     def validate_login(cls, login: str):
         if (len(login) < 5):
-            raise ValueError("Login must be at least 5 characters long")
+            raise ValueError('Login must be at least 5 characters long')
         return login
         
     
